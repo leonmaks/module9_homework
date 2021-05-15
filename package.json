@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev-01": "nodemon src/task_01.ts",
-    "run-01": "ts-node src/task_01.ts"
+    "run-01": "ts-node src/task_01.ts",
+    "dev-02": "nodemon src/task_02.ts",
+    "run-02": "ts-node src/task_02.ts"
   },
   "author": "Le Ma",
   "license": "MIT",
