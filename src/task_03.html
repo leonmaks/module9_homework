@@ -96,8 +96,9 @@ const value = document.querySelector('input').value;
 
       if (n >= 1 && n <= 10)
         doRequest(`https://picsum.photos/v2/list?limit=${n}`, displayResult)
-      else
-        alert("Число вне диапазона от 1 до 10")
+      else {
+        resultNode.innerHTML = '<p style="color:red;">Число вне диапазона от 1 до 10.</p>'
+      }
     })
 
   </script>
