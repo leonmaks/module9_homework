@@ -5,7 +5,12 @@
     "dev-01": "nodemon src/task_01.ts",
     "run-01": "ts-node src/task_01.ts",
     "dev-02": "nodemon src/task_02.ts",
-    "run-02": "ts-node src/task_02.ts"
+    "run-02": "ts-node src/task_02.ts",
+    "run-03": "node src/run_03",
+    "dev-04": "nodemon src/task_04.ts",
+    "run-04": "ts-node src/task_04.ts",
+    "dev-05": "nodemon src/task_05.ts",
+    "run-05": "ts-node src/task_05.ts"
   },
   "author": "Le Ma",
   "license": "MIT",
@@ -15,6 +20,7 @@
   },
   "devDependencies": {
     "@types/node": "^15.3.0",
-    "@types/xml2js": "^0.4.8"
+    "@types/xml2js": "^0.4.8",
+    "open": "^8.0.8"
   }
 }

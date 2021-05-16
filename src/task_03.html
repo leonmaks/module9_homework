@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+Задание 3
+Напишите код приложения, интерфейс которого представляет собой input и кнопку. В input можно ввести любое число. При клике на кнопку происходит следующее:
+
+Если число не попадает в диапазон от 1 до 10 — выводить ниже текст «число вне диапазона от 1 до 10».
+Если число попадает в диапазон от 1 до 10 — сделать запрос c помощью XHR по URL https://picsum.photos/v2/list?limit=10, где get-параметр limit — это введённое число.
+Пример: если пользователь ввёл 5, то запрос будет вида https://picsum.photos/v2/list?limit=5.
+После получения данных вывести ниже картинки на экран.
+
+Подсказка: получение данных из input.
+
+const value = document.querySelector('input').value;
+-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Модуль 9. Задание 3</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Модуль 9. Задание 3</h1>
+
+    <form action="">
+      <div class="mb-3">
+        <input type="text" class="form-control req-inp" id="numberOfImages"
+          placeholder="Введите число в диапазоне от 1 до 10">
+      </div>
+      <button type="submit" class="btn btn-primary req-btn">Получить изображения</button>
+    </form>
+
+    <div class="card-group res pt-3"></div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+  <script>
+
+    function doRequest(url, cb) {
+      let xhr = new XMLHttpRequest()
+      xhr.open("GET", url)
+
+      xhr.onload = function () {
+        if (xhr.status != 200) {
+          console.error("Статус ответа:", xhr.status)
+          alert(`Статус ответа: ${xhr.status}`)
+        } else {
+          const result = JSON.parse(xhr.response)
+          if (cb) cb(result)
+        }
+      }
+
+      xhr.onerror = function () {
+        console.error("Ошибка! Статус ответа:", xhr.status)
+        alert(`Ошибка! Статус ответа: ${xhr.status}`)
+      }
+
+      xhr.send()
+    }
+
+    const resultNode = document.querySelector(".res")
+    const btnNode = document.querySelector(".req-btn")
+
+    function displayResult(data) {
+      let cards = ""
+
+      data.forEach(item => {
+        cards = cards + `
+          <div class="card border-dark mb-3">
+            <img src="${item.download_url}" class="card-img-top" alt="img" />
+            <div class="card-body">
+              <p class="card-text">Author: ${item.author}</p>
+            </div>
+          </div>
+        `
+      })
+      resultNode.innerHTML = cards
+    }
+
+    btnNode.addEventListener("click", e => {
+      e.preventDefault()
+
+      n = document.querySelector(".req-inp").value
+
+      if (n >= 1 && n <= 10)
+        doRequest(`https://picsum.photos/v2/list?limit=${n}`, displayResult)
+      else
+        alert("Число вне диапазона от 1 до 10")
+    })
+
+  </script>
+</body>
+
+</html>
