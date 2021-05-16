@@ -1,3 +1,1 @@
-const open = require("open")
-
-open(`${__dirname}/task_03.html`)
+require("open")(`${__dirname}/task_03.html`)

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+Задание 4
+Напишите код приложения, интерфейс которого представляет собой input и кнопку. В input можно ввести любое число. При клике на кнопку происходит следующее:
+Если оба числа не попадают в диапазон от 100 до 300 или введено не число — выводить ниже текст «одно из чисел вне диапазона от 100 до 300»;
+Если числа попадают в диапазон от 100 до 300 — сделать запрос c помощью fetch по URL https://picsum.photos/200/300, где первое число — ширина картинки, второе — высота.
+Пример: если пользователь ввёл 150 и 200, то запрос будет вида https://picsum.photos/150/200.
+После получения данных вывести ниже картинку на экран.
+Подсказка: получение данных из input.
+  const value = document.querySelector('input').value;
+-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Модуль 9. Задание 4</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Модуль 9. Задание 4</h1>
+
+    <form action="">
+      <div class="mb-3">
+        <input type="text" class="form-control" id="imgWidth"
+          placeholder="Ширина изображения - в диапазоне от 100 до 300">
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="imgHeight"
+          placeholder="Высота изображения - в диапазоне от 100 до 300">
+      </div>
+      <button type="submit" id="draw-btn" class="btn btn-primary">Показать изображения</button>
+    </form>
+
+    <div id="result" class="pt-3"></div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+  <script>
+
+    const resultNode = document.querySelector("#result")
+    const btnNode = document.querySelector("#draw-btn")
+
+    function doRequest(url, cb) {
+      fetch(url)
+        .then(data => cb(data))
+        .catch(error => {
+          console.error(error)
+          alert(error)
+        })
+    }
+
+    function displayResult(data) {
+      resultNode.innerHTML = `<img src="${data.url}" alt="img" />`
+    }
+
+    btnNode.addEventListener("click", e => {
+      e.preventDefault()
+
+      w = document.querySelector("#imgWidth").value
+      h = document.querySelector("#imgHeight").value
+
+      if ((w >= 100 && w <= 300) && (h >= 100 && h <= 300))
+        doRequest(`https://picsum.photos/${w}/${h}`, displayResult)
+      else {
+        resultNode.innerHTML = '<p style="color:red;">Одно из чисел вне диапазона от 100 до 300</p>'
+      }
+    })
+
+  </script>
+</body>
+
+</html>

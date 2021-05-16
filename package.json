@@ -7,8 +7,7 @@
     "dev-02": "nodemon src/task_02.ts",
     "run-02": "ts-node src/task_02.ts",
     "run-03": "node src/run_03",
-    "dev-04": "nodemon src/task_04.ts",
-    "run-04": "ts-node src/task_04.ts",
+    "run-04": "node src/run_04",
     "dev-05": "nodemon src/task_05.ts",
     "run-05": "ts-node src/task_05.ts"
   },
