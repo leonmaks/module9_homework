@@ -68,8 +68,8 @@
     btnNode.addEventListener("click", e => {
       e.preventDefault()
 
-      w = document.querySelector("#imgWidth").value
-      h = document.querySelector("#imgHeight").value
+      const w = document.querySelector("#imgWidth").value
+      const h = document.querySelector("#imgHeight").value
 
       if ((w >= 100 && w <= 300) && (h >= 100 && h <= 300))
         doRequest(`https://picsum.photos/${w}/${h}`, displayResult)

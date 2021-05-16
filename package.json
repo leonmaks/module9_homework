@@ -6,10 +6,9 @@
     "run-01": "ts-node src/task_01.ts",
     "dev-02": "nodemon src/task_02.ts",
     "run-02": "ts-node src/task_02.ts",
-    "run-03": "node src/run_03",
-    "run-04": "node src/run_04",
-    "dev-05": "nodemon src/task_05.ts",
-    "run-05": "ts-node src/task_05.ts"
+    "run-03": "node src/run_html task_03.html",
+    "run-04": "node src/run_html task_04.html",
+    "run-05": "node src/run_html task_05.html"
   },
   "author": "Le Ma",
   "license": "MIT",

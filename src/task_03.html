@@ -92,7 +92,7 @@ const value = document.querySelector('input').value;
     btnNode.addEventListener("click", e => {
       e.preventDefault()
 
-      n = document.querySelector(".req-inp").value
+      const n = document.querySelector(".req-inp").value
 
       if (n >= 1 && n <= 10)
         doRequest(`https://picsum.photos/v2/list?limit=${n}`, displayResult)
